@@ -10,11 +10,11 @@ J'espère que cela vous sera utile, n'hésitez pas à apporter votre contributio
 Merci
 
 
-Franck M. CONDE
--------------------------------------
-Développeur & Designer Web et Mobile
-           ----------
-mail: innovations.franck@gmail.com
-twitter: @condefranck
-Facebook: franck conde
+Franck M. CONDE </br>
+-------------------------------------</br>
+Développeur & Designer Web et Mobile</br>
+           ----------</br>
+mail: innovations.franck@gmail.com</br>
+twitter: @condefranck</br>
+Facebook: franck conde</br>
 
