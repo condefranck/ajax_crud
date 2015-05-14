@@ -3,6 +3,7 @@
 <hr />
 1/ Cloner ce projet dans votre serveur web local (wamp, xampp ...) <br>
 2/ modification des informations de votre base de données : <br>
+   <span style="color:gray;">-->importer la base de données dans le dossier 'database'<br>
    <span style="color:gray;">--> applications/config/database.php
  
 <h6>Présentation</h6>
