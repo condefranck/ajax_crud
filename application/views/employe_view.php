@@ -1,13 +1,18 @@
- <form action="#" class="form-horizontal">
+ <?php 
+      $class = array('class' => 'form-horizontal', 'id' => 'form-employe' );
+      echo form_open('home/employe', $class);
+  ?>
   <fieldset>
     <legend>Ajouter d'un employé</legend>
+    <div class="alert"></div>
+
     <div class="form-group">
       <label for="matricule" class="col-lg-3 control-label">N° matricule</label>
       <div class="col-lg-9"><input class="form-control" required name="matricule" id="matricule" placeholder="Entrez le n° matricule" type="text"> </div>
     </div>
     <div class="form-group">
-      <label for="Nom" class="col-lg-3 control-label">Nom</label>
-      <div class="col-lg-9"><input class="form-control" required name="Nom" id="Nom" placeholder="Entrez le Nom" type="text"> </div>
+      <label for="nom" class="col-lg-3 control-label">Nom</label>
+      <div class="col-lg-9"><input class="form-control" required name="nom" id="nom" placeholder="Entrez le Nom" type="text"> </div>
     </div>
     <div class="form-group">
       <label for="prenom" class="col-lg-3 control-label">Prénom</label>
@@ -24,15 +29,25 @@
       <div class="col-lg-9">
         <select name="fonction" id="fonction" required class="form-control">
           <option value="" selected="selected">Fonction de l'employé</option>
+          <?php 
+            if ($fonct != null): 
+              foreach ($fonct as $rows):  ?>
+              <option value="<?php echo $rows->id_fonct; ?>"><?php echo $rows->lib_fonct; ?></option>
+          <?php endforeach; endif; ?>
         </select>
       </div>
     </div>
 
      <div class="form-group">
-      <label for="Departement" class="col-lg-3 control-label">Département</label>
+      <label for="departement" class="col-lg-3 control-label">Département</label>
       <div class="col-lg-9">
-        <select name="Departement" id="Departement"  class="form-control">
-          <option value="" selected="selected">Fonction de l'employé</option>
+        <select name="departement" id="departement"  class="form-control">
+          <option value="" selected="selected">Departement de l'employé</option>
+           <?php 
+            if ($dep != null):
+            foreach ($dep as $rows): ?>
+            <option value="<?php echo $rows->id_dep; ?>"><?php echo $rows->lib_dep; ?></option>
+          <?php endforeach; endif;  ?>
         </select>
       </div>
     </div>

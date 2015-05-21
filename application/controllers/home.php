@@ -29,6 +29,7 @@
               ));
            }
            else{
+            
             $this->load->view('dept_view.php');
            }
 
@@ -38,24 +39,56 @@
 
         function fonction()
         {
-          $this->form_validation->set_rules('fonct', 'Fonction', 'trim|required|xss_clean');
+          $this->form_validation->set_rules('lib_fonct', 'Fonction', 'trim|required|xss_clean');
           $this->form_validation->set_rules('desc_fonct', 'Description', 'trim|required|xss_clean');
 
           if ($this->form_validation->run()) {
             $data = array(
               'lib_fonct' => $this->input->post('lib_fonct'), 
-              'desc_fonct' => $this->input->post('desc_fonct')
+              'desc_fonct' => $this->input->post('desc_fonct'),
+              'id_dep' => $this->input->post('id_dep')
             );
+            sleep(2);
+            $this->home_model->add_fonct($data);
+             echo json_encode(array('msgSucces' => '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               <strong>Félicitation !</strong> enregistrement effectué avec succès'
+              ));
           }else{
-             $this->load->view('fonction_view');
+             $data['rows'] = $this->home_model->get_dep();
+             $this->load->view('fonction_view', $data);
           }
           
         }
 
         function employe()
         {
-            $data = $this->home_model->get_dep();
+          $this->form_validation->set_rules('matricule', 'N° matricule', 'trim|required|xss_clean');
+          $this->form_validation->set_rules('nom', 'Nom', 'trim|required|xss_clean');
+          $this->form_validation->set_rules('prenom', 'Prenom', 'trim|required|xss_clean');
+          $this->form_validation->set_rules('contact', 'Contact', 'trim|required|xss_clean');
+          $this->form_validation->set_rules('fonction', 'Fonction', 'trim|required|xss_clean');
+          $this->form_validation->set_rules('departement', 'Departement', 'trim|required|xss_clean');
+          if ($this->form_validation->run()) {
+            $data = array(
+              'matricule' => $this->input->post('matricule'), 
+              'nom' => $this->input->post('nom'),
+              'prenom' => $this->input->post('prenom'),
+              'contact' => $this->input->post('contact'),
+              'fonction' => $this->input->post('fonction'),
+              'departement' => $this->input->post('departement'),
+            );
+            sleep(2);
+            $this->home_model->add_employe($data);
+            echo json_encode(array('msgSucces' => '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               <strong>Félicitation !</strong> enregistrement effectué avec succès'
+              ));
+          }
+          else{
+            $data['dep'] = $this->home_model->get_dep();
+            $data['fonct'] = $this->home_model->get_fonct();
             $this->load->view('employe_view', $data);
+          }
+            
         }
 
     }

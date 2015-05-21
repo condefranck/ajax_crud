@@ -41,7 +41,6 @@
         $.ajax({
           type: 'POST',
           url: $(formulaire).attr('action'),
-          /*timeout: 5000,*/
           data: donnees,
           success: function(data) {
             console.log(data);
@@ -68,10 +67,8 @@
             $('.submit-load').hide();
             $('.alert').addClass('alert-danger');
             $('.alert-danger').show();
-            if (erreur.status == 0) {
-              $('.alert-danger').html("Oups ! Erreur de connexion");
-            };
-            
+            $('.alert-danger').html("Oups! Erreur d'envoi, Verifiez votre connexion");
+          
             setTimeout(function(){
               $('.alert-danger').html('');
               $('.alert').hide();

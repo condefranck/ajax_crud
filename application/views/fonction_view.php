@@ -25,7 +25,7 @@
           <?php 
             if ($rows != null):
             foreach ($rows as $rows): ?>
-            # code...
+            <option value="<?php echo $rows->id_dep; ?>"><?php echo $rows->lib_dep; ?></option>
           <?php endforeach; endif;  ?>
         </select>
       </div>
@@ -33,8 +33,61 @@
 
     <div class="form-group">
       <div class="col-lg-9 col-lg-offset-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Enregistrer !</button>
+        <div class="submit-load"></div>
       </div>
     </div>
   </fieldset>
 </form>
+
+<script>
+  var formulaire = $('#form-fonct');
+
+  $(formulaire).submit(function(event) {
+    event.preventDefault();
+    var donnees = $(formulaire).serialize();
+    $.ajax({
+      type: 'POST',
+      url: $(formulaire).attr('action'),
+      data: donnees,
+      success: function(data) {
+       console.log(data);
+       var rep = JSON.parse(data);
+       $('.alert').addClass('alert-success');
+       $('.alert-success').show();
+       $('.alert-success').html(rep.msgSucces);
+       $('#lib_fonct').val('');
+       $('#desc_fonct').val('');
+       $('#id_dep option[value=""]').prop('selected', 'true');
+       setTimeout(function(){
+          $('.alert-success').html('');
+          $('.alert').hide();
+          $('.alert').removeClass('alert-success');
+       }, 5000);
+      },
+      beforeSend: function() {
+        $('.submit-load').show();
+      },
+      complete: function(xhr) {
+       $('.submit-load').hide();
+      },
+    
+      error: function(error) {
+        $('.submit-load').hide();
+        $('.alert').addClass('alert-danger');
+        $('.alert-danger').show();
+        $('.alert-danger').html("Oups! Erreur d'envoi, Verifiez votre connexion");
+        
+        setTimeout(function(){
+          $('.alert-danger').html('');
+          $('.alert').hide();
+          $('.alert').removeClass('alert-danger');
+       }, 5000);
+      }
+    });
+    
+  });
+
+  
+</script>
+

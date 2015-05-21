@@ -22,6 +22,26 @@ class Home_model extends CI_Model {
         return $data;
     }
 
+    function add_fonct($data){
+        $this->db->insert('fonction', $data);
+    }
+
+    function get_fonct()
+    {
+       $q = $this->db->get('fonction');
+       if ($q->num_rows > 0) {
+          foreach($q->result() as $row) {
+            $data[] = $row;
+          }
+       }
+       return $data;
+    }
+
+    function add_employe($data)
+    {
+      $this->db->insert('employe', $data);
+    }
+
 }
 
 /* End of file home_model.php */
