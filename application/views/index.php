@@ -40,11 +40,11 @@
             <li><a href="#" id="ajout_fonct">Fonction</a></li>
             <li><a href="#" id="ajout_employe">Employé</a></li>
             <li class="dropdown">
-                <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Voir la liste <b class="caret"></b></a>
+                <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Voir la liste <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0)">Departement</a></li>
-                    <li><a href="javascript:void(0)">Fontion</a></li>
-                    <li><a href="javascript:void(0)">Employé</a></li>
+                    <li><a href="#">Departement</a></li>
+                    <li><a href="#">Fontion</a></li>
+                    <li><a href="#">Employé</a></li>
                 </ul>
             </li>
         </ul>
@@ -126,26 +126,7 @@
                 }, 1000);
             });
 
-           $('#formAddDep').submit(function(event) {
-              event.preventDefault();
-             /* var donnees = $(this).serialize();*/
-
-              $.ajax({
-                url: base_url + 'index.php' + home + '/departement',
-                type: 'POST',
-                timeout : 5000,
-                dataType: 'json',
-                data: {lib_dep:$('#lib_dep').val(), desc_dep:$('#desc_dep').val()},
-                success: function(data) {
-                 condole.log(data);
-                }
-              
-              });
-              
-           });
-
-        
-          });
+        });
       </script>
     
   </body>

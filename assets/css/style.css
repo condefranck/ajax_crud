@@ -36,3 +36,26 @@ html, body{
     margin-top: -16px;
     display: none;
 }
+.col-submit{
+    position: relative;
+
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+}
+.submit-load{
+    width: 32px;
+    height: 32px;
+    right:100px;
+    left:170px;
+    top:12px;
+    display: none;
+    position: absolute;
+    background:url(../img/bx_loader.gif) no-repeat center center;
+}
+
+.alert{
+    display: none;
+}
