@@ -78,7 +78,7 @@
             var base_url = '<?php echo base_url(); ?>';
             var ctrl_home = 'home';
 
-            $('.navbar-nav li a').click(function() {
+            $('.navbar-nav > li:not(:eq(3)) a').click(function() {
                 $('.contenu').html('');
                 $('.contenu').html('<div class="loader"></div>');
                 $('.loader').css('display', 'block');

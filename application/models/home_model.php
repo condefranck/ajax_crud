@@ -42,6 +42,15 @@ class Home_model extends CI_Model {
       $this->db->insert('employe', $data);
     }
 
+     function join_fonct_dep($id){
+        $this->db->where('id_dep', $id);
+        $q = $this->db->get('departement');
+        if ($q->num_rows > 0) {
+          $row = $q->row();
+          return $row;
+        }
+    }
+
 }
 
 /* End of file home_model.php */

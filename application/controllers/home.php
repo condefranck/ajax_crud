@@ -75,7 +75,7 @@
               'prenom' => $this->input->post('prenom'),
               'contact' => $this->input->post('contact'),
               'fonction' => $this->input->post('fonction'),
-              'departement' => $this->input->post('departement'),
+              'departement' => $this->input->post('departement')
             );
             sleep(2);
             $this->home_model->add_employe($data);
@@ -84,13 +84,20 @@
               ));
           }
           else{
-            $data['dep'] = $this->home_model->get_dep();
             $data['fonct'] = $this->home_model->get_fonct();
             $this->load->view('employe_view', $data);
           }
             
         }
 
+        function get_departement(){
+           if ($this->uri->segment(3)) {
+              sleep(1);
+              $data = $this->home_model->join_fonct_dep($this->uri->segment(3));
+              echo json_encode(array('dep' => $data ));
+            }
+        }
+      
     }
 
     /* End of file home.php */

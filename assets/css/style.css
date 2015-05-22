@@ -46,14 +46,25 @@ html, body{
     font-size: 12px;
 }
 .submit-load{
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
     right:100px;
     left:190px;
-    top:12px;
+    top:20px;
     display: none;
     position: absolute;
-    background:url(../img/bx_loader.gif) no-repeat center center;
+    background:url(../img/sm_loader.gif) no-repeat center center;
+}
+
+.select-dep-load{
+    width: 16px;
+    height: 16px;
+    right:130px;
+    left:238px;
+    top:10px;
+    display: none;
+    position: absolute;
+    background:url(../img/sm_loader.gif) no-repeat center center;
 }
 
 .alert{

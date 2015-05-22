@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <div class="col-lg-9 col-lg-offset-3 col-submit">
-        <button type="submit" id="submit" class="btn btn-primary">Ajouter !</button>
+        <button type="submit" id="submit" class="btn btn-primary">Enregistrer !</button>
         <div class="submit-load"></div>
       </div>
     </div>
