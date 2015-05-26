@@ -97,6 +97,38 @@
               echo json_encode(array('dep' => $data ));
             }
         }
+
+        function liste_dep()
+        {
+          $this->load->view('liste_dep_view');
+        }
+
+        function get_liste_dep(){
+          $data = $this->home_model->list_get_dep();
+          echo json_encode(array('list_dep' => $data));
+        }
+
+        function liste_fonct(){
+          $this->load->view('liste_fonct_view');
+        }
+
+        function get_liste_fonct()
+        {
+          $data = $this->home_model->list_get_fonct();
+          echo json_encode(array('list_fonct' =>  $data));
+        }
+
+        function liste_employe()
+        {
+          $this->load->view('liste_employe_view');
+        }
+        
+        function get_liste_employe()
+        {
+         $data = $this->home_model->list_get_employe();
+         echo  json_encode(array('list_employe' => $data));
+        }
+
       
     }
 

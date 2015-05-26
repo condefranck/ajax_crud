@@ -41,10 +41,10 @@
             <li><a href="#" id="ajout_employe">Employé</a></li>
             <li class="dropdown">
                 <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Voir la liste <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Departement</a></li>
-                    <li><a href="#">Fontion</a></li>
-                    <li><a href="#">Employé</a></li>
+                <ul class="dropdown-menu liste">
+                    <li><a href="#" id="liste_dep">Departement</a></li>
+                    <li><a href="#" id="liste_fonct">Fontion</a></li>
+                    <li><a href="#" id="liste_employe">Employé</a></li>
                 </ul>
             </li>
         </ul>
@@ -78,7 +78,7 @@
             var base_url = '<?php echo base_url(); ?>';
             var ctrl_home = 'home';
 
-            $('.navbar-nav > li:not(:eq(3)) a').click(function() {
+            $('.navbar-nav > li:not(:eq(3)) a, .liste > li a').click(function() {
                 $('.contenu').html('');
                 $('.contenu').html('<div class="loader"></div>');
                 $('.loader').css('display', 'block');
@@ -124,6 +124,31 @@
                        $('.loader').css('display', 'none');
                     });
                 }, 1000);
+            });
+
+            $('#liste_dep').click(function() {
+              setTimeout(function() {
+                 $('.contenu').load(base_url + 'index.php/' + ctrl_home + '/liste_dep',
+                  function(){
+                   $('.loader').css('display', 'none');
+                });   
+               }, 1000);
+            });
+
+            $('#liste_fonct').click(function() {
+              setTimeout(function() {
+                $('.contenu').load(base_url + 'index.php/' + ctrl_home + '/liste_fonct',function() {
+                  $('.loader').css('display', 'none');
+                })
+              }, 1000);
+            });
+
+            $('#liste_employe').click(function() {
+              setTimeout(function() {
+                $('.contenu').load(base_url + 'index.php/' + ctrl_home + '/liste_employe',function() {
+                  $('.loader').css('display', 'none');
+                })
+               }, 1000);
             });
 
         });
