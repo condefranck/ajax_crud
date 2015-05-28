@@ -129,6 +129,42 @@
          echo  json_encode(array('list_employe' => $data));
         }
 
+        function supprime_dep(){
+          if ($this->uri->segment(3)) {
+           sleep(2);
+           $this->home_model->delete_dep($this->uri->segment(3));
+           echo json_encode(array('msgDelSucess'=> '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Suppression effectuée avec succès'));
+          }
+          else
+          {
+            return false;
+          }
+        }
+
+         function supprime_fonct(){
+          if ($this->uri->segment(3)) {
+           sleep(2);
+           $this->home_model->delete_fonct($this->uri->segment(3));
+           echo json_encode(array('msgDelSucess'=> '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Suppression effectuée avec succès'));
+          }
+          else
+          {
+            return false;
+          }
+        }
+
+        function supprime_employe(){
+          if ($this->uri->segment(3)) {
+           sleep(2);
+           $this->home_model->delete_employe($this->uri->segment(3));
+           echo json_encode(array('msgDelSucess'=> '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Suppression effectuée avec succès'));
+          }
+          else
+          {
+            return false;
+          }
+        }
+
       
     }
 

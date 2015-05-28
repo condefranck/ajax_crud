@@ -93,6 +93,21 @@ class Home_model extends CI_Model {
 
     }
 
+    function delete_dep($id){
+      $this->db->where('id_dep', $id);
+      $this->db->delete('departement');
+    }
+
+    function delete_fonct($id){
+      $this->db->where('id_fonct', $id);
+      $this->db->delete('fonction');
+    }
+
+    function delete_employe($id){
+      $this->db->where('id_employe', $id);
+      $this->db->delete('employe');
+    }
+
 
 }
 
