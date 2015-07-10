@@ -43,7 +43,7 @@
                   tab += '<td>'+rep.list_employe[i].lib_dep+'</td>';
                    tab += '<td>'+rep.list_employe[i].date_ajout+'</td>';
                   tab += '<td>';
-                  tab += '<button type="button" class="btn btn-xs edit btn-primary"><span class="glyphicon glyphicon-edit"></span></button>';
+                  tab += '<button type="button" class="btn btn-xs edit btn-primary" data-toggle="modal" href="#modif_emp" onClick="modifEmp('+rep.list_employe[i].id_employe+')"><span class="glyphicon glyphicon-edit"></span></button>';
                   tab += '<button type="button" class="btn btn-xs supp btn-danger" onClick="suppEmploye('+rep.list_employe[i].id_employe+')"><span class="glyphicon glyphicon-trash"></span></button>';
                   tab += '</td>';
                 tab += '</tr>';
@@ -59,6 +59,7 @@
   charger();
 
   function suppEmploye(id){
+    
     if(window.confirm("Voulez-vous supprimer cet employé ?")){
         $.ajax({
           url: '<?php echo base_url(); ?>index.php/home/supprime_employe/'+id,
@@ -83,4 +84,49 @@
       return false
     }
   }
+
+  function modifEmp (id_emp) {
+     id_employe = id_emp;
+     var formulaire_emp = $('#form_emp');
+     $.ajax({
+      url : '<?php echo base_url(); ?>index.php/home/modif_get_emp/'+id_emp,
+      type: 'POST',
+      data: {},
+      success: function(data){
+        var rep = JSON.parse(data);
+        $('#matricule').val(rep.emp.matricule);
+        $('#nom').val(rep.emp.nom);
+        $('#prenom').val(rep.emp.prenom);
+        $('#contact').val(rep.emp.contact);
+        $(formulaire_emp).attr('action', '<?php echo base_url() ?>index.php/home/modif_emp/'+id_emp);
+
+      }
+    })
+
+      $.ajax({
+        url: '<?php echo base_url(); ?>index.php/home/get_liste_dep',
+        type: 'POST',
+        data: {},
+        success: function(data){
+          var rep = JSON.parse(data);
+          var opt = '';
+          opt += '<option value="">Choisissez une fonction</option>';
+          for (var i = 0; i <= rep.list_dep.length; i++) {
+            opt += '<option value="'+rep.list_dep[i].id_fonct+'">'+rep.list_dep[i].lib_fonct+'</option>';
+          };
+
+          $('#departement').val(opt);
+        }
+
+      })
+   
+
+
+  }
+
+ 
+
+
+
+
 </script>

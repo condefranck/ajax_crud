@@ -165,8 +165,119 @@
           }
         }
 
+        function modif_get_fonct(){
+           if ($this->uri->segment(3)) {
+              $data = $this->home_model->join_fonct_dep($this->uri->segment(3));
+              echo json_encode(array('dep' => $data ));
+            }
+        }
+
+        function modifFonct(){
+          if ($this->uri->segment(3)) {
+            $this->form_validation->set_rules('lib_fonct', 'Nom de la fonction', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('desc_fonct', 'Description de la fonction', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('id_dep', 'Departement', 'trim|required|xss_clean');
+            if ($this->form_validation->run()) {
+
+              $data = array(
+                'lib_fonct' =>  $this->input->post('lib_fonct'),
+                'desc_fonct' =>  $this->input->post('desc_fonct'),
+                'id_dep' =>  $this->input->post('id_dep'),
+              );
+
+              sleep(2);
+              $this->home_model->update_fonct($this->uri->segment(3), $data);
+            }
+
+        } 
+        else{
+          return false;
+        }
+
       
     }
+
+    function modif_get_dep()
+    {
+       if ($this->uri->segment(3)) {
+         $data = $this->home_model->get_one_dep($this->uri->segment(3));
+         echo json_encode(array('dep' => $data ));
+
+       }
+    }
+
+    function modifDep()
+    {
+      if ($this->uri->segment(3)) {
+       
+        $this->form_validation->set_rules('lib_dep', 'Departement', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('desc_dep', 'Description', 'trim|required|xss_clean');
+
+        if ($this->form_validation->run()) {
+          $data = array(
+            'lib_dep' => $this->input->post('lib_dep'), 
+            'desc_dep' => $this->input->post('desc_dep'),
+          );
+
+          sleep(2);
+          $this->home_model->update_dep($this->uri->segment(3), $data);
+
+        }
+      }
+      else{
+        return false;
+      }
+     
+     
+    }
+
+
+    function modif_get_emp()
+    {
+      if ($this->uri->segment(3)) {
+        $data = $this->home_model->get_only_emp($this->uri->segment(3));
+        echo json_encode(array('emp' => $data));
+      }else{
+        return false;
+      }
+    }
+
+    function get_emp_fonct()
+    {
+      $data = $this->home_model->get_fonct();
+      echo json_encode(array('fonct' => $data));
+    }
+
+    function modif_emp()
+    {
+      if ($this->uri->segment(3)) {
+        $this->form_validation->set_rules('matricule', 'Matricule', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('nom', 'Nom', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('prenom', 'Prenom', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('contact', 'Contact', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('fonction', 'Fonction', 'trim|required|xss_clean');
+
+        if ($this->form_validation->run()) {
+         $data = array(
+          'matricule' =>  $this->input->post('matricule'),
+          'nom' =>  $this->input->post('nom'),
+          'prenom' =>  $this->input->post('prenom'),
+          'contact' =>  $this->input->post('contact'),
+          'fonction' =>  $this->input->post('fonction'),
+          'departement' =>  $this->input->post('departement')
+          );
+        }
+        sleep(2);
+        $this->home_model->update_emp($this->uri->segment(3), $data);
+      }else{
+        return false;
+      }
+     
+    }
+
+}
+
+
 
     /* End of file home.php */
     /* Location: ./application/controllers/home.php */

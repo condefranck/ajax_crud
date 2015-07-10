@@ -23,6 +23,16 @@ class Home_model extends CI_Model {
         return $data;
     }
 
+    function get_one_dep($id)
+    {
+      $this->db->where('id_dep', $id);
+      $q = $this->db->get('departement');
+      if ($q->num_rows > 0) {
+        $data = $q->row();
+        return $data;
+      }
+    }
+
     function add_fonct($data){
         $this->db->insert('fonction', $data);
     }
@@ -57,10 +67,15 @@ class Home_model extends CI_Model {
       
     }
 
-    function list_get_dep($num=10000000,$start=0){
-       $this->db->select()->from('departement')->limit($num,$start);
+    function list_get_dep(){
+       $this->db->select()->from('departement');
        $q = $this->db->get();
-       return $q->result_array();  
+       if ($q->num_rows() > 0) {
+        foreach ($q->result() as $row) {
+          $data[] = $row;
+        }
+       }
+       return $data;
     }
 
     function list_get_fonct(){
@@ -75,6 +90,7 @@ class Home_model extends CI_Model {
       }
       return $data;
     }
+
 
     function list_get_employe()
     {
@@ -93,6 +109,16 @@ class Home_model extends CI_Model {
 
     }
 
+    function get_only_emp($id)
+    {
+      $this->db->where('id_employe', $id);
+      $q = $this->db->get('employe');
+      if ($q->num_rows() > 0) {
+        $data = $q->row();
+        return $data;
+      }
+    }
+
     function delete_dep($id){
       $this->db->where('id_dep', $id);
       $this->db->delete('departement');
@@ -108,10 +134,32 @@ class Home_model extends CI_Model {
       $this->db->delete('employe');
     }
 
+    function update_fonct($id,$data)
+    {
+      $this->db->where('id_fonct', $id);
+      $this->db->update('fonction', $data);
+    }
+
+    function update_dep($id,$data)
+    {
+      $this->db->where('id_dep', $id);
+      $this->db->update('departement', $data);
+    }
+
+
+    function update_emp($id,$data)
+    {
+      $this->db->where('id_employe', $id);
+      $this->db->update('employe', $data);
+    }
+
+    
+
 
 }
 
 /* End of file home_model.php */
 /* Location: ./application/models/home_model.php */
+
 
 ?>

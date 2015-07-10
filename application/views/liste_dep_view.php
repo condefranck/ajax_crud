@@ -36,7 +36,7 @@
           tab += "<td>"+rep.list_dep[i].desc_dep+"</td>";
           tab += "<td>"+rep.list_dep[i].date_ajout+"</td>";
           tab += "<td>";
-          tab += "<button type='button' class='btn btn-xs edit btn-primary'><span class='glyphicon glyphicon-edit'></span></button>"
+          tab += "<button type='button' class='btn btn-xs edit btn-primary' data-toggle='modal' href='#modif-dep' onClick='modifDep("+rep.list_dep[i].id_dep+")'><span class='glyphicon glyphicon-edit'></span></button>"
           tab += "<button type='button' class='btn btn-xs supp btn-danger' onClick='suppDep("+rep.list_dep[i].id_dep+")'><span class='glyphicon glyphicon-trash'></span></button>";
           tab +="</td>";
           tab += "</tr>";
@@ -73,5 +73,51 @@ function suppDep(id){
   }
  
 }
+
+
+function modifDep(id) {
+  var formulaire_dep = $('#form-dep');
+  id_depart = id;
+  $.ajax({
+    url: '<?php echo base_url(); ?>index.php/home/modif_get_dep/'+id,
+    type: 'POST',
+    data: {},
+    success: function(data){
+        var rep = JSON.parse(data);
+        $('#lib_dep').val(rep.dep.lib_dep);
+        $('#desc_dep').val(rep.dep.desc_dep);
+        $(formulaire_dep).attr('action', '<?php echo base_url(); ?>index.php/home/modif_dep/'+id);
+    }
+
+  })
+}
+
+/**
+*  Modification dans la bd
+**/
+
+var formulaire_dep = $('#form-dep');
+$(formulaire_dep).submit(function(event) {
+  event.preventDefault();
+  var donnees = $(formulaire_dep).serialize();
+  $('#fermer_dep').trigger('click');
+
+  $.ajax({
+    url: '<?php echo base_url(); ?>index.php/home/modifDep/'+id_depart,
+    type: 'POST',
+    success: function(data) {
+        $('.alert').addClass('alert-success');
+        $('.alert-success').show();
+        $('.alert-success').html('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Modification du departement effectuée avec succès');
+        setTimeout(function() {
+          $('.alert').html('');
+          $('.alert').hide();
+          $('.alert').removeClass('alert-success');
+        }, 5000);  
+    }
+  })
+
+});
+
 
 </script>

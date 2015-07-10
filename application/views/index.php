@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>CRUD FULL AJAX | CodeIgnter</title>
 
     <!-- material CSS -->
@@ -66,6 +66,155 @@
   </div>
 </div>
 
+
+<!-- modal modif departement -->
+<div class="modal fade" id="modif-dep">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modication de departement</h4>
+      </div>
+      <div class="modal-body">
+          <?php 
+              $class = array('class' => 'form-horizontal', 'id' => 'form-dep' );
+              echo form_open('', $class); 
+          ?>
+ 
+         
+          <div class="form-group">
+            <label for="lib_dep" class="col-lg-3 control-label">Nom du departement</label>
+            <div class="col-lg-9">
+              <input class="form-control" name="lib_dep" id="lib_dep" required placeholder="Entrez le nom du departement" type="text"> 
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="desc_dep" class="col-lg-3 control-label">Description du departement</label>
+            <div class="col-lg-9">
+              <textarea name="desc_dep" id="desc_dep" rows="5" class="form-control" required placeholder="Entrez un descriptif du departement" rows="10"></textarea>
+            </div>
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="fermer_dep">fermer</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </div>  
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- modal modif fonction -->
+
+<div class="modal fade" id="modif-fonct">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modication de fonction</h4>
+      </div>
+      <div class="modal-body">
+          <?php 
+              $class = array('class' => 'form-horizontal', 'id' => 'form-fonct' );
+              echo form_open('', $class); 
+          ?>
+ 
+          <div class="form-group">
+            <label for="fonct" class="col-lg-3 control-label">Nom de la fonction</label>
+            <div class="col-lg-9"><input class="form-control" required name="lib_fonct" id="lib_fonct" placeholder="Entrez le nom de la fonction" type="text"> </div>
+          </div>
+          <div class="form-group">
+            <label for="fonct" class="col-lg-3 control-label">Description de la fonction</label>
+            <div class="col-lg-9">
+              <textarea name="desc_fonct" required id="desc_fonct" rows="5" class="form-control" placeholder="Entrez un descriptif la fonction" rows="10"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="id_dep" class="col-lg-3 control-label">Departement</label>
+            <div class="col-lg-9">
+              <select name="id_dep" id="id_dep" class="form-control" required="required">
+
+              </select>
+            </div>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="fermer">fermer</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </div>  
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal modif employé -->
+
+
+<div class="modal fade" id="modif_emp">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modifier un employé</h4>
+      </div>
+      <div class="modal-body">
+        
+        <?php echo form_open('', $attr = array('role' => 'form', 'id' => 'form_emp')); ?>
+        
+        <div class="form-group">
+          <label for="matricule" class="col-lg-3 control-label">N° matricule</label>
+          <div class="col-lg-9"><input class="form-control" required name="matricule" id="matricule" placeholder="Entrez le n° matricule" type="text"> </div>
+        </div>
+        <div class="form-group">
+          <label for="nom" class="col-lg-3 control-label">Nom</label>
+          <div class="col-lg-9"><input class="form-control" required name="nom" id="nom" placeholder="Entrez le Nom" type="text"> </div>
+        </div>
+        <div class="form-group">
+          <label for="prenom" class="col-lg-3 control-label">Prénom</label>
+          <div class="col-lg-9"><input class="form-control" required name="prenom" id="prenom" placeholder="Entrez le prenom" type="text"> </div>
+        </div>
+
+        <div class="form-group">
+          <label for="contact" class="col-lg-3 control-label">Contact</label>
+          <div class="col-lg-9"><input class="form-control" required name="contact" id="contact" placeholder="Entrez le contact" type="text"> </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fonction" class="col-lg-3 control-label">Fonction</label>
+          <div class="col-lg-9">
+            <select name="fonction" id="fonction" required class="form-control">
+              
+             
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fonction" class="col-lg-3 control-label">Departement</label>
+          <div class="col-lg-9">
+            <select name="departement" id="departement" required class="form-control">
+              
+             
+            </select>
+          </div>
+        </div>
+        <p>&nbsp;</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">fermer</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
    <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.11.2.min.js"></script>
